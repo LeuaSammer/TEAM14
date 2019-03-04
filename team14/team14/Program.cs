@@ -113,7 +113,13 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void PrintAllWorkers(IList<Worker> list)
         {
-
+            int count = 0;
+            foreach(var el in list)
+            {
+                Console.WriteLine($"{++count}-й работник:");
+                el.PrintWorker();
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
