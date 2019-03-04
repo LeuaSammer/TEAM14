@@ -100,7 +100,11 @@ namespace team14
         /// </summary>
         public void PrintWorker()
         {
-
+            Console.WriteLine($"Фамилия: {Surname}");
+            Console.WriteLine($"Должность: {Position}");
+            Console.WriteLine($"Дата подписания контракта: {ContractSigningDate.ToString("dd.MM.yyyy")}");
+            Console.WriteLine($"Срок контракта: {ContractTerm}");
+            Console.WriteLine($"Оклад: {Salary}");
         }
 
         /// <summary>
