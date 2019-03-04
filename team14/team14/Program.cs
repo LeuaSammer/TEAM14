@@ -84,6 +84,11 @@ namespace team14
         /// </summary>
         public uint Salary { get; set; }
 
+        /// <summary>
+        /// Фильтр
+        /// </summary>
+        public static Filter Filter { get; set; }
+
         #endregion
 
 
@@ -126,8 +131,7 @@ namespace team14
         /// Вывод работников, удовлетворяющих фильтру
         /// </summary>
         /// <param name="list">Список работников</param>
-        /// <param name="filter">Фильтр</param>
-        public static void PrintFilteredWokers(IList<Worker> list, Filter filter)
+        public static void PrintFilteredWokers(IList<Worker> list)
         {
 
         }
@@ -136,7 +140,7 @@ namespace team14
         /// Проверка, удовлетворяет ли работник условиям фильтра
         /// </summary>
         /// <param name="filter"></param>
-        public void CheckWithFilter(Filter filter)
+        public void CheckWithFilter()
         {
 
         }
