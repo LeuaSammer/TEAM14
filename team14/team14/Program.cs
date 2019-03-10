@@ -98,6 +98,18 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void AddNewWorker(IList<Worker> list)
         {
+			 Worker worker = new Worker();
+            Console.Write("Введите фамилию работника:  ");
+            worker.Surname = Console.ReadLine();     
+            Console.Write("Введите должность работника:  ");
+            worker.Position = Console.ReadLine();
+            Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
+            worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
+            Console.Write("Введите срок действия контракта:  ");
+            worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
+            Console.Write("Введите оклад работника:  ");
+            worker.Salary = Convert.ToUInt32(Console.ReadLine());
+            list.Add(worker);
         }
 
         /// <summary>
