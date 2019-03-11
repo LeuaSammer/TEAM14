@@ -244,6 +244,11 @@ namespace team14
         /// </summary>
         public uint Salary { get; set; }
 
+        /// <summary>
+        /// Фильтр
+        /// </summary>
+        public static Filter Filter { get; set; }
+
         #endregion
 
 
@@ -253,6 +258,18 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void AddNewWorker(IList<Worker> list)
         {
+			 Worker worker = new Worker();
+            Console.Write("Введите фамилию работника:  ");
+            worker.Surname = Console.ReadLine();     
+            Console.Write("Введите должность работника:  ");
+            worker.Position = Console.ReadLine();
+            Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
+            worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
+            Console.Write("Введите срок действия контракта:  ");
+            worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
+            Console.Write("Введите оклад работника:  ");
+            worker.Salary = Convert.ToUInt32(Console.ReadLine());
+            list.Add(worker);
         }
 
         /// <summary>
@@ -260,7 +277,11 @@ namespace team14
         /// </summary>
         public void PrintWorker()
         {
-
+            Console.WriteLine($"Фамилия: {Surname}");
+            Console.WriteLine($"Должность: {Position}");
+            Console.WriteLine($"Дата подписания контракта: {ContractSigningDate.ToString("dd.MM.yyyy")}");
+            Console.WriteLine($"Срок контракта: {ContractTerm}");
+            Console.WriteLine($"Оклад: {Salary}");
         }
 
         /// <summary>
@@ -269,15 +290,20 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void PrintAllWorkers(IList<Worker> list)
         {
-
+            int count = 0;
+            foreach(var el in list)
+            {
+                Console.WriteLine($"{++count}-й работник:");
+                el.PrintWorker();
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
         /// Вывод работников, удовлетворяющих фильтру
         /// </summary>
         /// <param name="list">Список работников</param>
-        /// <param name="filter">Фильтр</param>
-        public static void PrintFilteredWokers(IList<Worker> list, Filter filter)
+        public static void PrintFilteredWokers(IList<Worker> list)
         {
 
         }
@@ -286,7 +312,7 @@ namespace team14
         /// Проверка, удовлетворяет ли работник условиям фильтра
         /// </summary>
         /// <param name="filter"></param>
-        public void CheckWithFilter(Filter filter)
+        public void CheckWithFilter()
         {
 
         }
