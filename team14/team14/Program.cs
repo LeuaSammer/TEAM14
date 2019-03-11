@@ -47,7 +47,7 @@ namespace team14
         public uint? SalaryMaxValue { get; set; }
         #endregion
 
-        #region Метод для ввода полей фильтра с клавиатуры 
+        #region Методы для ввода полей фильтра с клавиатуры 
         /// <summary>
         /// Ввод значения фильтра для поля "Фамилия"
         /// </summary>
@@ -312,9 +312,41 @@ namespace team14
         /// Проверка, удовлетворяет ли работник условиям фильтра
         /// </summary>
         /// <param name="filter"></param>
-        public void CheckWithFilter()
-        {
+        public bool CheckWithFilter()
+        {   
+            //Поочередная проверка полей
+            //    1. Поле "Оклад"
+            //    2. Поле "Срок действия контракта"
+            //    3. Поле "Дата подписания контракта"
+            //    4. Поле "Должность"
+            //    5. Поле "Фамилия"
 
+            //Проверка поля "Оклад"
+            if ((Filter.SalaryMaxValue != null) && (this.Salary > Filter.SalaryMaxValue))
+                return false;
+            if ((Filter.SalaryMinValue != null) && (this.Salary < Filter.SalaryMinValue))
+                return false;
+
+            //Проверка поля "Срок действия контракта"
+            if ((Filter.ContractTermMaxValue != null) && (this.ContractTerm > Filter.ContractTermMaxValue))
+                return false;
+            if ((Filter.ContractTermMinValue != null) && (this.ContractTerm < Filter.ContractTermMinValue))
+                return false;
+
+            //Проверка поля "Дата подписания котракта"
+            if ((Filter.ContractSigningDateMaxValue != null) && (this.ContractSigningDate > Filter.ContractSigningDateMaxValue))
+                return false;
+            if ((Filter.ContractSigningDateMinValue != null) && (this.ContractSigningDate < Filter.ContractSigningDateMinValue))
+                return false;
+
+            //Проверка поля "Должность"
+            if (!this.Position.Contains(Filter.PositionFilterValue)) return false;
+
+            //Проверка поля "Фамилия"
+            if (!this.Surname.Contains(Filter.SurnameFilterValue)) return false;
+
+            //Все поля прошли проверку
+            return true;
         }
     }
 
@@ -322,9 +354,7 @@ namespace team14
     {
         static void Main(string[] args)
         {
-            Filter filter = new Filter();
-            filter.InputContractSigningDateMaxFilterValue();
-            Console.ReadLine();
+
         }
     }
 }
