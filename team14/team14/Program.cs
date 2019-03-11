@@ -7,227 +7,130 @@ namespace team14
     struct Filter
     {
         #region Поля фильтра
-        /// <summary>
-        /// Значение фильтра для поля "Фамилия"
-        /// </summary>
-        public string SurnameFilterValue { get; set; }
 
-        /// <summary>
-        /// Значение фильтра для поля "Должность"
-        /// </summary>
-        public string PositionFilterValue { get; set; }
+        public string Surname;                     // Фамилия
+        public string Position;                    // Должность
 
-        /// <summary>
-        /// Значение минимальной границы диапазона для поля "Дата подписания контракта"
-        /// </summary>
-        public DateTime? ContractSigningDateMinValue { get; set; }
+        public DateTime? ContractSigningDateMin;   // Дата подписания контракта (min)
+        public DateTime? ContractSigningDateMax;   // Дата подписания контракта (max)
 
-        /// <summary>
-        /// Значение максимальной границы диапазона для поля "Дата подписания контракта"
-        /// </summary>
-        public DateTime? ContractSigningDateMaxValue { get; set; }
+        public uint? ContractTermMin;              // Срок действия контракта (min)
+        public uint? ContractTermMax;              // Срок действия контракта (max)
 
-        /// <summary>
-        /// Значение минимальной границы диапазона для поля "Срок действия контракта"
-        /// </summary>
-        public uint? ContractTermMinValue { get; set; }
+        public uint? SalaryMin;                    // Срок действия контракта (min)
+        public uint? SalaryMax;                    // Срок действия контракта (max)
 
-        /// <summary>
-        /// Значение максимальной границы диапазона для поля "Срок действия контракта"
-        /// </summary>
-        public uint? ContractTermMaxValue { get; set; }
-
-        /// <summary>
-        /// Значение минимальной границы диапазона для поля "Оклад"
-        /// </summary>
-        public uint? SalaryMinValue { get; set; }
-        /// <summary>
-        /// Значение максимальной границы диапазона для поля "Оклад"
-        /// </summary>
-        public uint? SalaryMaxValue { get; set; }
         #endregion
 
         #region Методы для ввода полей фильтра с клавиатуры 
-        /// <summary>
-        /// Ввод значения фильтра для поля "Фамилия"
-        /// </summary>
-        public void InputSurnameFilterValue()
+        public void Input()
         {
             Console.WriteLine("Введите значение филтра поля \"Фамилия\":");
-            SurnameFilterValue = Console.ReadLine();
-        }
-        /// <summary>
-        /// Ввод значения фильтра для поля "Должность"
-        /// </summary>
-        public void InputPositionFilterValue()
-        {
+            Surname = Console.ReadLine();
+
             Console.WriteLine("Введите значение филтра поля \"Позиция\":");
-            SurnameFilterValue = Console.ReadLine();
-        }
+            Surname = Console.ReadLine();
 
-        /// <summary>
-        /// Ввод значения верхней границы диапазона фильтра поля "Дата подписания договора"
-        /// </summary>
-        public void InputContractSigningDateMaxFilterValue()
-        {
             Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
-            ContractSigningDateMaxValue = InputDateTime();
-        }
-        /// <summary>
-        /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
-        /// </summary>
-        public void InputContractSigningDateMinFilterValue()
-        {
-            Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
-            ContractSigningDateMinValue = InputDateTime();
-        }
+            ContractSigningDateMax = InputDateTime();
 
-        /// <summary>
-        /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
-        /// </summary>
-        public void InputContractTermMinValue()
-        {
+            Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
+            ContractSigningDateMin = InputDateTime();
+
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
-            ContractTermMinValue = InputUint();
-        }
-        /// <summary>
-        /// Ввод значения верхней границы диапазона фильтра поля "Срок действия договора"
-        /// </summary>
-        public void InputContractTermMaxValue()
-        {
-            Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
-            ContractTermMaxValue = InputUint();
-        }
+            ContractTermMin = InputUint();
 
-        /// <summary>
-        /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
-        /// </summary>
-        public void InputSalaryMinValue()
-        {
+            Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
+            ContractTermMax = InputUint();
+
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Оклад\"");
-            SalaryMinValue = InputUint();
-        }
-        /// <summary>
-        /// Ввод значения верхней границы диапазона фильтра поля "Оклад"
-        /// </summary>
-        public void InputSalaryMaxValue()
-        {
+            SalaryMin = InputUint();
+
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Оклад\"");
-            SalaryMinValue = InputUint();
+            SalaryMin = InputUint();
         }
         #endregion
 
         #region Приватные методы
-        /// <summary>
-        /// Ввод даты с клавиатуры
-        /// </summary>
         private DateTime? InputDateTime()
         {
-
-            //Выход = false
-            //Результат = null
-            //Пока (Выход != true) {
-            //      temp = read()
-            //      Если temp пустая строка {
-            //          Выход = true
-            //          Результат = null
-            //      }
-            //      Иначе {
-            //          Преобразуем строку в дату
-            //          Если есть ошибки вывести сообщение об ошибке
-            //          Иначе {
-            //              Выход = true
-            //              Результат = Введеная дата
-            //          }
-            //      }
-            //  }
-            //  Вернуть результат
-
-            //Инициализация переменных
-            bool exit = false;
-            DateTime? result = null;
-            while (!exit)
-            {
-                //Чтение строки с консоли
-                string temp = Console.ReadLine();
-                //Проверка на пустую строку
-                if (temp == String.Empty)
-                {
-                    //Заносим пустое значение в результат
-                    result = null;
-                    exit = true;
+            /*
+            Прочитать строку с клавиатуры
+            if введеная строка не пуста {
+                Преобразуем строку в дату
+                if преобразование успешно {
+                    вернуть дату
                 }
-                else
-                {
-                    try
-                    {
-                        //Преобразование строки в дату и помещение в результат
-                        result = DateTime.Parse(temp);
-                        exit = true;
-                    }
-                    catch (Exception e)
-                    {
-                        //Вывод сообщения об ошибке
-                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
-                    }
+                else {
+                    Вывести сообщение об ошибке
                 }
             }
-            //Возвращение результата
-            return result;
+            вернуть NULL
+            */
+
+            // Прочитать строку с клавиатуры
+            string temp = Console.ReadLine();
+            // if введеная строка не пуста
+            if (temp != String.Empty)
+            {
+                try
+                {
+                    // Преобразуем строку в дату
+                    var result = DateTime.Parse(temp);
+                    //  if преобразование успешно {
+                    //      вернуть дату
+                    //  }
+                    return result;
+                }
+                catch (Exception e)
+                {   
+                    //  else {
+                    //      Вывести значение об ошибке
+                    //  }
+                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                }
+            }
+            return null;
         }
-        /// <summary>
-        /// Ввод целого числа с клавиатуры
-        /// </summary>
+
         private uint? InputUint()
         {
-
-            //Выход = false
-            //Результат = null
-            //Пока (Выход != true) {
-            //    temp = read()
-            //    Если temp пустая строка {
-            //        Результат = null
-            //        Выход = true
-            //    }
-            //    Иначе {
-            //        Преобразуем строку в число
-            //        Если есть ошибки вывести сообщение об ошибке
-            //        Иначе {
-            //              Выход = true
-            //              Результат = Введенное число
-            //        }
-            //    }
-            //}
-            //Вернуть результат
-
-            uint? result = 0;
-            bool exit = false;
-            while (!exit)
-            {
-                //Чтение строки с консоли
-                string temp = Console.ReadLine();
-                if (temp == String.Empty)
-                {
-                    //Заносим пустое значение в результат
-                    result = null;
-                    exit = true;
+            /*
+            Прочитать строку с клавиатуры
+            if введеная строка не пуста {
+                Преобразуем строку в число
+                if преобразование успешно {
+                    вернуть число
                 }
-                else
-                {
-                    try
-                    {
-                        //Преобразование строки в число
-                        result = UInt32.Parse(temp);
-                        exit = true;
-                    }
-                    catch (Exception e)
-                    {
-                        //Вывод сообщения об ошибке
-                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
-                    }
+                else {
+                    Вывести сообщение об ошибке
                 }
             }
-            return result;
+            вернуть NULL
+            */
+
+            string temp = Console.ReadLine();
+            // if введеная строка не пуста
+            if (temp != String.Empty)
+            {
+                try
+                {
+                    // Преобразуем строку в дату
+                    var result = UInt32.Parse(temp);
+                    //  if преобразование успешно {
+                    //      вернуть число
+                    //  }
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    //  else {
+                    //      Вывести значение об ошибке
+                    //  }
+                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                }
+            }
+            return null;
         }
         #endregion
     }
@@ -324,42 +227,35 @@ namespace team14
         /// <summary>
         /// Проверка, удовлетворяет ли работник условиям фильтра
         /// </summary>
-        /// <param name="filter"></param>
         public bool CheckWithFilter()
         {
-            //Поочередная проверка полей
-            //    1. Поле "Оклад"
-            //    2. Поле "Срок действия контракта"
-            //    3. Поле "Дата подписания контракта"
-            //    4. Поле "Должность"
-            //    5. Поле "Фамилия"
-
-            //Проверка поля "Оклад"
-            if ((Filter.SalaryMaxValue != null) && (this.Salary > Filter.SalaryMaxValue))
+            // Проверка поля "Оклад"
+            if ((Filter.SalaryMax != null) && (this.Salary > Filter.SalaryMax))
                 return false;
-            if ((Filter.SalaryMinValue != null) && (this.Salary < Filter.SalaryMinValue))
+            if ((Filter.SalaryMin != null) && (this.Salary < Filter.SalaryMin))
                 return false;
 
-            //Проверка поля "Срок действия контракта"
-            if ((Filter.ContractTermMaxValue != null) && (this.ContractTerm > Filter.ContractTermMaxValue))
+            // Проверка поля "Срок действия контракта"
+            if ((Filter.ContractTermMax != null) && (this.ContractTerm > Filter.ContractTermMax))
                 return false;
-            if ((Filter.ContractTermMinValue != null) && (this.ContractTerm < Filter.ContractTermMinValue))
-                return false;
-
-            //Проверка поля "Дата подписания котракта"
-            if ((Filter.ContractSigningDateMaxValue != null) && (this.ContractSigningDate > Filter.ContractSigningDateMaxValue))
-                return false;
-            if ((Filter.ContractSigningDateMinValue != null) && (this.ContractSigningDate < Filter.ContractSigningDateMinValue))
+            if ((Filter.ContractTermMin != null) && (this.ContractTerm < Filter.ContractTermMin))
                 return false;
 
-            //Проверка поля "Должность"
-            if ((Filter.PositionFilterValue != null) && (!this.Position.Contains(Filter.PositionFilterValue)))
+            // Проверка поля "Дата подписания котракта"
+            if ((Filter.ContractSigningDateMax != null) && (this.ContractSigningDate > Filter.ContractSigningDateMax))
+                return false;
+            if ((Filter.ContractSigningDateMin != null) && (this.ContractSigningDate < Filter.ContractSigningDateMin))
                 return false;
 
-            //Проверка поля "Фамилия"
-            if ((Filter.SurnameFilterValue != null) && (!this.Surname.Contains(Filter.SurnameFilterValue))) return false;
+            // Проверка поля "Должность"
+            if ((Filter.Position != null) && (!this.Position.Contains(Filter.Position)))
+                return false;
 
-            //Все поля прошли проверку
+            // Проверка поля "Фамилия"
+            if ((Filter.Surname != null) && (!this.Surname.Contains(Filter.Surname)))
+                return false;
+
+            // Все поля прошли проверку
             return true;
         }
     }
