@@ -318,7 +318,17 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void PrintFilteredWokers(IList<Worker> list)
         {
-
+            int count = 0;
+            Console.WriteLine($"Вывод отфильтрованных работников");
+            foreach (var el in list)
+            {
+                Console.WriteLine($"{++count}-й работник:");
+                if (el.CheckWithFilter())
+                {
+                    el.PrintWorker();
+                    Console.WriteLine();
+                }
+            }
         }
 
         /// <summary>
