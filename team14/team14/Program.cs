@@ -32,19 +32,17 @@ namespace team14
         #region Методы для ввода полей фильтра с клавиатуры 
         public void Input()
         {
-            Console.WriteLine("Введите значение филтра поля \"Фамилия\":");
+            Console.WriteLine("Введите значение фильтра поля \"Фамилия\":");
             Surname = Console.ReadLine();
 
-            Console.WriteLine("Введите значение филтра поля \"Позиция\":");
-            Surname = Console.ReadLine();
+            Console.WriteLine("Введите значение фильтра поля \"Позиция\":");
+            Position = Console.ReadLine();
 
-            Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
-
-            ContractSigningDateMax = Helper.InputDateTime();
-
-            Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
+            Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Дата подписания договора\"");
             ContractSigningDateMin = Helper.InputDateTime();
 
+            Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Дата подписания договора\"");
+            ContractSigningDateMax = Helper.InputDateTime();
 
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
             ContractTermMin = Helper.InputUint();
@@ -56,11 +54,8 @@ namespace team14
             SalaryMin = Helper.InputUint();
 
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Оклад\"");
-            SalaryMin = Helper.InputUint();
+            SalaryMax = Helper.InputUint();
         }
-        #endregion
-
-        #region Приватные методы
         #endregion
     }
 
