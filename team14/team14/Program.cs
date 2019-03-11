@@ -21,7 +21,7 @@ namespace team14
         /// Значение минимальной границы диапазона для поля "Дата подписания контракта"
         /// </summary>
         public DateTime? ContractSigningDateMinValue { get; set; }
-        
+
         /// <summary>
         /// Значение максимальной границы диапазона для поля "Дата подписания контракта"
         /// </summary>
@@ -51,14 +51,16 @@ namespace team14
         /// <summary>
         /// Ввод значения фильтра для поля "Фамилия"
         /// </summary>
-        public void InputSurnameFilterValue() {
+        public void InputSurnameFilterValue()
+        {
             Console.WriteLine("Введите значение филтра поля \"Фамилия\":");
             SurnameFilterValue = Console.ReadLine();
         }
         /// <summary>
         /// Ввод значения фильтра для поля "Должность"
         /// </summary>
-        public void InputPositionFilterValue() {
+        public void InputPositionFilterValue()
+        {
             Console.WriteLine("Введите значение филтра поля \"Позиция\":");
             SurnameFilterValue = Console.ReadLine();
         }
@@ -66,29 +68,33 @@ namespace team14
         /// <summary>
         /// Ввод значения верхней границы диапазона фильтра поля "Дата подписания договора"
         /// </summary>
-        public void InputContractSigningDateMaxFilterValue() {
+        public void InputContractSigningDateMaxFilterValue()
+        {
             Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
             ContractSigningDateMaxValue = InputDateTime();
         }
         /// <summary>
         /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
         /// </summary>
-        public void InputContractSigningDateMinFilterValue() {
+        public void InputContractSigningDateMinFilterValue()
+        {
             Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
             ContractSigningDateMinValue = InputDateTime();
         }
-        
+
         /// <summary>
         /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
         /// </summary>
-        public void InputContractTermMinValue() {
+        public void InputContractTermMinValue()
+        {
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
             ContractTermMinValue = InputUint();
         }
         /// <summary>
         /// Ввод значения верхней границы диапазона фильтра поля "Срок действия договора"
         /// </summary>
-        public void InputContractTermMaxValue() {
+        public void InputContractTermMaxValue()
+        {
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
             ContractTermMaxValue = InputUint();
         }
@@ -96,14 +102,16 @@ namespace team14
         /// <summary>
         /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
         /// </summary>
-        public void InputSalaryMinValue() {
+        public void InputSalaryMinValue()
+        {
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Оклад\"");
             SalaryMinValue = InputUint();
         }
         /// <summary>
         /// Ввод значения верхней границы диапазона фильтра поля "Оклад"
         /// </summary>
-        public void InputSalaryMaxValue() {
+        public void InputSalaryMaxValue()
+        {
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Оклад\"");
             SalaryMinValue = InputUint();
         }
@@ -115,7 +123,7 @@ namespace team14
         /// </summary>
         private DateTime? InputDateTime()
         {
-            
+
             //Выход = false
             //Результат = null
             //Пока (Выход != true) {
@@ -191,7 +199,7 @@ namespace team14
             //    }
             //}
             //Вернуть результат
-            
+
             uint? result = 0;
             bool exit = false;
             while (!exit)
@@ -263,9 +271,9 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void AddNewWorker(IList<Worker> list)
         {
-			 Worker worker = new Worker();
+            Worker worker = new Worker();
             Console.Write("Введите фамилию работника:  ");
-            worker.Surname = Console.ReadLine();     
+            worker.Surname = Console.ReadLine();
             Console.Write("Введите должность работника:  ");
             worker.Position = Console.ReadLine();
             Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
@@ -296,7 +304,7 @@ namespace team14
         public static void PrintAllWorkers(IList<Worker> list)
         {
             int count = 0;
-            foreach(var el in list)
+            foreach (var el in list)
             {
                 Console.WriteLine($"{++count}-й работник:");
                 el.PrintWorker();
@@ -318,7 +326,7 @@ namespace team14
         /// </summary>
         /// <param name="filter"></param>
         public bool CheckWithFilter()
-        {   
+        {
             //Поочередная проверка полей
             //    1. Поле "Оклад"
             //    2. Поле "Срок действия контракта"
@@ -345,10 +353,11 @@ namespace team14
                 return false;
 
             //Проверка поля "Должность"
-            if (!this.Position.Contains(Filter.PositionFilterValue)) return false;
+            if ((Filter.PositionFilterValue != null) && (!this.Position.Contains(Filter.PositionFilterValue)))
+                return false;
 
             //Проверка поля "Фамилия"
-            if (!this.Surname.Contains(Filter.SurnameFilterValue)) return false;
+            if ((Filter.SurnameFilterValue != null) && (!this.Surname.Contains(Filter.SurnameFilterValue))) return false;
 
             //Все поля прошли проверку
             return true;
