@@ -40,22 +40,182 @@ namespace team14
         /// <summary>
         /// Значение минимальной границы диапазона для поля "Оклад"
         /// </summary>
-        public uint SalaryMinValue { get; set; }
+        public uint? SalaryMinValue { get; set; }
         /// <summary>
         /// Значение максимальной границы диапазона для поля "Оклад"
         /// </summary>
-        public uint SalaryMaxValue { get; set; }
+        public uint? SalaryMaxValue { get; set; }
         #endregion
 
         #region Метод для ввода полей фильтра с клавиатуры 
-        public void InputSurnameFilterValue() { }
-        public void InputPositionFilterValue() { }
-        public void InputContractSigningDateMaxFilterValue() { }
-        public void InputContractSigningDateMinxFilterValue() { }
-        public void InputContractTermMinValue() { }
-        public void InputContractTermMaxValue() { }
-        public void InputSalaryMinValue() { }
-        public void InputSalaryMaxValue() { }
+        /// <summary>
+        /// Ввод значения фильтра для поля "Фамилия"
+        /// </summary>
+        public void InputSurnameFilterValue() {
+            Console.WriteLine("Введите значение филтра поля \"Фамилия\":");
+            SurnameFilterValue = Console.ReadLine();
+        }
+        /// <summary>
+        /// Ввод значения фильтра для поля "Должность"
+        /// </summary>
+        public void InputPositionFilterValue() {
+            Console.WriteLine("Введите значение филтра поля \"Позиция\":");
+            SurnameFilterValue = Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Ввод значения верхней границы диапазона фильтра поля "Дата подписания договора"
+        /// </summary>
+        public void InputContractSigningDateMaxFilterValue() {
+            Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
+            ContractSigningDateMaxValue = InputDateTime();
+        }
+        /// <summary>
+        /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
+        /// </summary>
+        public void InputContractSigningDateMinFilterValue() {
+            Console.WriteLine("Введите значение верхней страницы диапазона фильтра поля \"Дата подписания договора\"");
+            ContractSigningDateMinValue = InputDateTime();
+        }
+        
+        /// <summary>
+        /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
+        /// </summary>
+        public void InputContractTermMinValue() {
+            Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
+            ContractTermMinValue = InputUint();
+        }
+        /// <summary>
+        /// Ввод значения верхней границы диапазона фильтра поля "Срок действия договора"
+        /// </summary>
+        public void InputContractTermMaxValue() {
+            Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
+            ContractTermMaxValue = InputUint();
+        }
+
+        /// <summary>
+        /// Ввод значения нижней границы диапазона фильтра поля "Дата подписания договора"
+        /// </summary>
+        public void InputSalaryMinValue() {
+            Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Оклад\"");
+            SalaryMinValue = InputUint();
+        }
+        /// <summary>
+        /// Ввод значения верхней границы диапазона фильтра поля "Оклад"
+        /// </summary>
+        public void InputSalaryMaxValue() {
+            Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Оклад\"");
+            SalaryMinValue = InputUint();
+        }
+        #endregion
+
+        #region Приватные методы
+        /// <summary>
+        /// Ввод даты с клавиатуры
+        /// </summary>
+        private DateTime? InputDateTime()
+        {
+            
+            //Выход = false
+            //Результат = null
+            //Пока (Выход != true) {
+            //      temp = read()
+            //      Если temp пустая строка {
+            //          Выход = true
+            //          Результат = null
+            //      }
+            //      Иначе {
+            //          Преобразуем строку в дату
+            //          Если есть ошибки вывести сообщение об ошибке
+            //          Иначе {
+            //              Выход = true
+            //              Результат = Введеная дата
+            //          }
+            //      }
+            //  }
+            //  Вернуть результат
+
+            //Инициализация переменных
+            bool exit = false;
+            DateTime? result = null;
+            while (!exit)
+            {
+                //Чтение строки с консоли
+                string temp = Console.ReadLine();
+                //Проверка на пустую строку
+                if (temp == String.Empty)
+                {
+                    //Заносим пустое значение в результат
+                    result = null;
+                    exit = true;
+                }
+                else
+                {
+                    try
+                    {
+                        //Преобразование строки в дату и помещение в результат
+                        result = DateTime.Parse(temp);
+                        exit = true;
+                    }
+                    catch (Exception e)
+                    {
+                        //Вывод сообщения об ошибке
+                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                    }
+                }
+            }
+            //Возвращение результата
+            return result;
+        }
+        /// <summary>
+        /// Ввод целого числа с клавиатуры
+        /// </summary>
+        private uint? InputUint()
+        {
+            /*
+             *  Выход = false
+             *  Пока (Выход != true) {
+                    temp = read()
+                    Если temp пустая строка {
+                        Очистить значение фильтра
+                        Выход = true
+                    }
+                    Иначе {
+                        Преобразуем строку в число
+                        Если есть ошибки вывести сообщение об ошибке
+                        Иначе Выход = true
+                    }
+                }
+             */
+            uint? result = 0;
+            bool exit = false;
+            while (!exit)
+            {
+                //Чтение строки с консоли
+                string temp = Console.ReadLine();
+                if (temp == String.Empty)
+                {
+                    //Очистка значения фильтра
+                    result = null;
+                    exit = true;
+                }
+                else
+                {
+                    try
+                    {
+                        //Преобразование строки в дату
+                        result = UInt32.Parse(temp);
+                        exit = true;
+                    }
+                    catch (Exception e)
+                    {
+                        //Вывод сообщения об ошибке
+                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                    }
+                }
+            }
+            return result;
+        }
         #endregion
     }
 
@@ -136,7 +296,9 @@ namespace team14
     {
         static void Main(string[] args)
         {
-
+            Filter filter = new Filter();
+            filter.InputContractSigningDateMaxFilterValue();
+            Console.ReadLine();
         }
     }
 }
