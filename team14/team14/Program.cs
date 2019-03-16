@@ -63,11 +63,11 @@ namespace team14
     {
         #region Свойства
 
-        public string   Surname;             // Фамилия
-        public string   Position;            // Должность
+        public string Surname;             // Фамилия
+        public string Position;            // Должность
         public DateTime ContractSigningDate; // Дата подписания контракта
-        public uint     ContractTerm;        // Срок действия контракта
-        public uint     Salary;              // Оклад
+        public uint ContractTerm;        // Срок действия контракта
+        public uint Salary;              // Оклад
 
         public static Filter Filter;         // Фильтр
 
@@ -81,16 +81,32 @@ namespace team14
         public static void AddNewWorker(IList<Worker> list)
         {
             Worker worker = new Worker();
+
             Console.Write("Введите фамилию работника:  ");
             worker.Surname = Console.ReadLine();
+            while (String.IsNullOrEmpty(worker.Surname))
+            {
+                Console.Write("Повторите ввод фамилии:");
+                worker.Surname = Console.ReadLine();
+            }
+
             Console.Write("Введите должность работника:  ");
             worker.Position = Console.ReadLine();
+            while (String.IsNullOrEmpty(worker.Position))
+            {
+                Console.Write("Повторите ввод должности:");
+                worker.Surname = Console.ReadLine();
+            }
+
             Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
-            worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
+            worker.ContractSigningDate = (DateTime)Helper.InputDateTime();
+
             Console.Write("Введите срок действия контракта:  ");
-            worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
+            worker.ContractTerm = (uint)Helper.InputUint();
+
             Console.Write("Введите оклад работника:  ");
-            worker.Salary = Convert.ToUInt32(Console.ReadLine());
+            worker.Salary = (uint)Helper.InputUint();
+
             list.Add(worker);
         }
 
