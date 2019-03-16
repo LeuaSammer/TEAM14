@@ -7,7 +7,51 @@ namespace team14
     {
         static void Main(string[] args)
         {
+            IList<Worker> list = new List<Worker>();
+            Filter filter = new Filter();
 
+            string ch;
+            do
+            {
+                Console.WriteLine("Меню:");
+                Console.WriteLine("1. Ввод нового работника");
+                Console.WriteLine("2. Вывод работников");
+                Console.WriteLine("3. Ввод значений фильтра");
+                Console.WriteLine("4. Вывод отфильтрованных значений");
+
+                ch = Console.ReadLine();
+                switch (ch)
+                {
+                    case "1":
+                        Console.Clear();
+                        Console.WriteLine("Ввод нового работника: ");
+                        Worker.AddNewWorker(list);
+                        break;
+
+                    case "2":
+                        Console.Clear();
+                        Worker.PrintAllWorkers(list);
+                        break;
+
+                    case "3":
+                        Console.Clear();
+                        Console.WriteLine("Выберите поле фильтра");
+                        break;
+
+                    case "4":
+                        Console.Clear();
+                        Worker.PrintFilteredWokers(list);
+                        break;
+
+                    default:
+                        Environment.Exit(0);
+                        break;
+                }
+
+                Console.ReadKey();
+                Console.Clear();
+
+            } while (int.Parse(ch) < 5);
         }
     }
 
@@ -210,27 +254,29 @@ namespace team14
             }
             вернуть NULL
             */
-
-            // Прочитать строку с клавиатуры
-            string temp = Console.ReadLine();
-            // if введеная строка не пуста
-            if (temp != String.Empty)
+            while (true)
             {
-                try
+                // Прочитать строку с клавиатуры
+                string temp = Console.ReadLine();
+                // if введеная строка не пуста
+                if (temp != String.Empty)
                 {
-                    // Преобразуем строку в дату
-                    var result = DateTime.Parse(temp);
-                    //  if преобразование успешно {
-                    //      вернуть дату
-                    //  }
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    //  else {
-                    //      Вывести значение об ошибке
-                    //  }
-                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                    try
+                    {
+                        // Преобразуем строку в дату
+                        var result = DateTime.Parse(temp);
+                        //  if преобразование успешно {
+                        //      вернуть дату
+                        //  }
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        //  else {
+                        //      Вывести значение об ошибке
+                        //  }
+                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                    }
                 }
             }
             return null;
@@ -252,26 +298,28 @@ namespace team14
             }
             вернуть NULL
             */
-
-            string temp = Console.ReadLine();
-            // if введеная строка не пуста
-            if (temp != String.Empty)
+            while (true)
             {
-                try
+                string temp = Console.ReadLine();
+                // if введеная строка не пуста
+                if (temp != String.Empty)
                 {
-                    // Преобразуем строку в дату
-                    var result = UInt32.Parse(temp);
-                    //  if преобразование успешно {
-                    //      вернуть число
-                    //  }
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    //  else {
-                    //      Вывести значение об ошибке
-                    //  }
-                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                    try
+                    {
+                        // Преобразуем строку в дату
+                        var result = UInt32.Parse(temp);
+                        //  if преобразование успешно {
+                        //      вернуть число
+                        //  }
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        //  else {
+                        //      Вывести значение об ошибке
+                        //  }
+                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                    }
                 }
             }
             return null;
