@@ -64,7 +64,7 @@ namespace team14
 
 
     /// <summary>
-    /// Структура "Фильтр"
+    /// Фильтр
     /// </summary>
     struct Filter
     {
@@ -188,7 +188,7 @@ namespace team14
     }
 
     /// <summary>
-    /// Структура "Работник"
+    /// Работник
     /// </summary>
     struct Worker
     {
