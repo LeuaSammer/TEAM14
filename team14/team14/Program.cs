@@ -7,18 +7,30 @@ namespace team14
     {
         static void Main(string[] args)
         {
+            /*
+            Бесконечный цикл работы программы {
+                Вывод главного меню  
+                Выбор команды
+                Выполнить выбранную команду
+            }
+             */
             IList<Worker> list = new List<Worker>();
             Worker.Filter = new Filter();
             string ch;
+            // Бесконечный цикл работы программы
             do
             {
+                // Вывод главного меню
                 Console.WriteLine("Меню:");
                 Console.WriteLine("1. Ввод нового работника");
                 Console.WriteLine("2. Вывод работников");
                 Console.WriteLine("3. Ввод значений фильтра");
                 Console.WriteLine("4. Вывод отфильтрованных значений");
 
+                // Выбор команды
                 ch = Console.ReadLine();
+
+                // Выполнить выбранную команду
                 switch (ch)
                 {
                     case "1":
@@ -54,6 +66,10 @@ namespace team14
         }
     }
 
+
+    /// <summary>
+    /// Структура "Фильтр"
+    /// </summary>
     struct Filter
     {
         #region Поля фильтра
@@ -73,6 +89,7 @@ namespace team14
         #endregion
 
         #region Методы для ввода полей фильтра с клавиатуры
+        
         /// <summary>
         /// Ввод значений фильтра с клавиатуры
         /// </summary>
@@ -105,9 +122,9 @@ namespace team14
         #endregion
         
         /// <summary>
-        /// Чтение даты с консоли 
+        /// Ввод даты с консоли
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Введенна дата</returns>
         private static DateTime? InputDateTime()
         {
             /*
@@ -152,6 +169,7 @@ namespace team14
         /// <summary>
         /// Чтение числа с клавиатуры 
         /// </summary>
+        /// <returns> Введенное число </returns>
         private static uint? InputUint()
         {
             /*
@@ -193,6 +211,9 @@ namespace team14
         }
     }
 
+    /// <summary>
+    /// Структура "Работник"
+    /// </summary>
     struct Worker
     {
         #region Свойства
@@ -300,6 +321,7 @@ namespace team14
         /// <summary>
         /// Проверка, удовлетворяет ли работник условиям фильтра
         /// </summary>
+        /// <returns> Возвращает true если структура соответсвует фильтру, иначе false </returns>
         public bool CheckWithFilter()
         {
             // Проверка поля "Оклад"
