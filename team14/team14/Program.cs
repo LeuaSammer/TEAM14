@@ -8,8 +8,7 @@ namespace team14
         static void Main(string[] args)
         {
             IList<Worker> list = new List<Worker>();
-            Filter filter = new Filter();
-
+            Worker.Filter = new Filter();
             string ch;
             do
             {
@@ -35,7 +34,7 @@ namespace team14
 
                     case "3":
                         Console.Clear();
-                        Console.WriteLine("Выберите поле фильтра");
+                        Worker.Filter.Input();
                         break;
 
                     case "4":
@@ -83,24 +82,106 @@ namespace team14
             Position = Console.ReadLine();
 
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Дата подписания договора\"");
-            ContractSigningDateMin = Helper.InputDateTime();
+            ContractSigningDateMin = Filter.InputDateTime();
 
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Дата подписания договора\"");
-            ContractSigningDateMax = Helper.InputDateTime();
+            ContractSigningDateMax = Filter.InputDateTime();
 
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
-            ContractTermMin = Helper.InputUint();
+            ContractTermMin = Filter.InputUint();
 
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
-            ContractTermMax = Helper.InputUint();
+            ContractTermMax = Filter.InputUint();
 
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Оклад\"");
-            SalaryMin = Helper.InputUint();
+            SalaryMin = Filter.InputUint();
 
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Оклад\"");
-            SalaryMax = Helper.InputUint();
+            SalaryMax = Filter.InputUint();
         }
         #endregion
+
+        public static DateTime? InputDateTime()
+        {
+            /*
+            Прочитать строку с клавиатуры
+            if введеная строка не пуста {
+                Преобразуем строку в дату
+                if преобразование успешно {
+                    вернуть дату
+                }
+                else {
+                    Вывести сообщение об ошибке
+                }
+            }
+            вернуть NULL
+            */
+            
+            // Прочитать строку с клавиатуры
+            string temp = Console.ReadLine();
+            // if введеная строка не пуста
+            if (temp != String.Empty)
+            {
+                try
+                {
+                    // Преобразуем строку в дату
+                    var result = DateTime.Parse(temp);
+                    //  if преобразование успешно {
+                    //      вернуть дату
+                    //  }
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    //  else {
+                    //      Вывести значение об ошибке
+                    //  }
+                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                }
+            }
+            return null;
+        }
+
+        // Чтение числа с клавиатуры
+        public static uint? InputUint()
+        {
+            /*
+            Прочитать строку с клавиатуры
+            if введеная строка не пуста {
+                Преобразуем строку в число
+                if преобразование успешно {
+                    вернуть число
+                }
+                else {
+                    Вывести сообщение об ошибке
+                }
+            }
+            вернуть NULL
+            */
+
+            string temp = Console.ReadLine();
+            // if введеная строка не пуста
+            if (temp != String.Empty)
+            {
+                try
+                {
+                    // Преобразуем строку в дату
+                    var result = UInt32.Parse(temp);
+                    //  if преобразование успешно {
+                    //      вернуть число
+                    //  }
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    //  else {
+                    //      Вывести значение об ошибке
+                    //  }
+                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
+                }
+            }
+            return null;
+        }
     }
 
     struct Worker
@@ -141,7 +222,7 @@ namespace team14
                 Console.Write("Повторите ввод должности:");
                 worker.Surname = Console.ReadLine();
             }
-
+            /*
             Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
             worker.ContractSigningDate = (DateTime)Helper.InputDateTime();
 
@@ -150,7 +231,7 @@ namespace team14
 
             Console.Write("Введите оклад работника:  ");
             worker.Salary = (uint)Helper.InputUint();
-
+            */
             list.Add(worker);
         }
 
@@ -234,96 +315,5 @@ namespace team14
             // Все поля прошли проверку
             return true;
         }
-    }
-
-    public class Helper
-    {
-        // Чтение Даты с клавиатуры
-        public static DateTime? InputDateTime()
-        {
-            /*
-            Прочитать строку с клавиатуры
-            if введеная строка не пуста {
-                Преобразуем строку в дату
-                if преобразование успешно {
-                    вернуть дату
-                }
-                else {
-                    Вывести сообщение об ошибке
-                }
-            }
-            вернуть NULL
-            */
-            while (true)
-            {
-                // Прочитать строку с клавиатуры
-                string temp = Console.ReadLine();
-                // if введеная строка не пуста
-                if (temp != String.Empty)
-                {
-                    try
-                    {
-                        // Преобразуем строку в дату
-                        var result = DateTime.Parse(temp);
-                        //  if преобразование успешно {
-                        //      вернуть дату
-                        //  }
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        //  else {
-                        //      Вывести значение об ошибке
-                        //  }
-                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
-                    }
-                }
-            }
-            return null;
-        }
-
-        // Чтение числа с клавиатуры
-        public static uint? InputUint()
-        {
-            /*
-            Прочитать строку с клавиатуры
-            if введеная строка не пуста {
-                Преобразуем строку в число
-                if преобразование успешно {
-                    вернуть число
-                }
-                else {
-                    Вывести сообщение об ошибке
-                }
-            }
-            вернуть NULL
-            */
-            while (true)
-            {
-                string temp = Console.ReadLine();
-                // if введеная строка не пуста
-                if (temp != String.Empty)
-                {
-                    try
-                    {
-                        // Преобразуем строку в дату
-                        var result = UInt32.Parse(temp);
-                        //  if преобразование успешно {
-                        //      вернуть число
-                        //  }
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        //  else {
-                        //      Вывести значение об ошибке
-                        //  }
-                        Console.WriteLine("Некорректный ввод! Повторите операцию.");
-                    }
-                }
-            }
-            return null;
-        }
-
     }
 }
