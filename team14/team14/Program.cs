@@ -219,7 +219,6 @@ namespace team14
         {
             try
             {
-
                 Worker worker = new Worker();
 
                 // Фамилия работника
@@ -264,44 +263,7 @@ namespace team14
                 Console.WriteLine("Ошибка!");
             }
         }
-        public static void AddNewWorker(IList<Worker> list)
-        {
-            try
-            {
-                Worker worker = new Worker();
-
-                Console.Write("Введите фамилию работника:  ");
-                worker.Surname = Console.ReadLine();
-                while (String.IsNullOrEmpty(worker.Surname))
-                {
-                    Console.Write("Повторите ввод фамилии:");
-                    worker.Surname = Console.ReadLine();
-                }
-
-                Console.Write("Введите должность работника:  ");
-                worker.Position = Console.ReadLine();
-                while (String.IsNullOrEmpty(worker.Position))
-                {
-                    Console.Write("Повторите ввод должности:");
-                    worker.Surname = Console.ReadLine();
-                }
-
-                Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
-                worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
-
-                Console.Write("Введите срок действия контракта:  ");
-                worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
-
-                Console.Write("Введите оклад работника:  ");
-                worker.Salary = Convert.ToUInt32(Console.ReadLine());
-                list.Add(worker);
-            }
-            catch
-            {
-                Console.Clear();
-                Console.WriteLine("Ошибка!");
-            }
-        }
+       
 
         /// <summary>
         /// Вывод информации о работнике на экран
