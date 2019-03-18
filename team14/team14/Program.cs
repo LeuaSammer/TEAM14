@@ -205,34 +205,41 @@ namespace team14
         /// <param name="list">Список работников</param>
         public static void AddNewWorker(IList<Worker> list)
         {
-            Worker worker = new Worker();
-
-            Console.Write("Введите фамилию работника:  ");
-            worker.Surname = Console.ReadLine();
-            while (String.IsNullOrEmpty(worker.Surname))
+            try
             {
-                Console.Write("Повторите ввод фамилии:");
-                worker.Surname = Console.ReadLine();
-            }
+                Worker worker = new Worker();
 
-            Console.Write("Введите должность работника:  ");
-            worker.Position = Console.ReadLine();
-            while (String.IsNullOrEmpty(worker.Position))
+                Console.Write("Введите фамилию работника:  ");
+                worker.Surname = Console.ReadLine();
+                while (String.IsNullOrEmpty(worker.Surname))
+                {
+                    Console.Write("Повторите ввод фамилии:");
+                    worker.Surname = Console.ReadLine();
+                }
+
+                Console.Write("Введите должность работника:  ");
+                worker.Position = Console.ReadLine();
+                while (String.IsNullOrEmpty(worker.Position))
+                {
+                    Console.Write("Повторите ввод должности:");
+                    worker.Surname = Console.ReadLine();
+                }
+                
+                Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
+                worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
+
+                Console.Write("Введите срок действия контракта:  ");
+                worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
+                
+                Console.Write("Введите оклад работника:  ");
+                worker.Salary = Convert.ToUInt32(Console.ReadLine());
+                list.Add(worker);
+            }
+            catch 
             {
-                Console.Write("Повторите ввод должности:");
-                worker.Surname = Console.ReadLine();
-            }
-            /*
-            Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
-            worker.ContractSigningDate = (DateTime)Helper.InputDateTime();
-
-            Console.Write("Введите срок действия контракта:  ");
-            worker.ContractTerm = (uint)Helper.InputUint();
-
-            Console.Write("Введите оклад работника:  ");
-            worker.Salary = (uint)Helper.InputUint();
-            */
-            list.Add(worker);
+                Console.Clear();
+                Console.WriteLine("Ошибка!");
+            }           
         }
 
         /// <summary>
