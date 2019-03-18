@@ -215,6 +215,55 @@ namespace team14
         /// Ввод информации о работнике с клавиатуры
         /// </summary>
         /// <param name="list">Список работников</param>
+		public static void AddNewWorker(IList<Worker> list)
+        {
+            try
+            {
+
+                Worker worker = new Worker();
+
+                // Фамилия работника
+                Console.Write("Введите фамилию работника:  ");
+                worker.Surname = Console.ReadLine();
+                while (String.IsNullOrEmpty(worker.Surname))
+                {
+                    Console.Write("Повторите ввод фамилии:");
+                    worker.Surname = Console.ReadLine();
+                }
+
+                // Должность работника
+                Console.Write("Введите должность работника:  ");
+                worker.Position = Console.ReadLine();
+                while (String.IsNullOrEmpty(worker.Position))
+                {
+                    Console.Write("Повторите ввод должности:");
+                    worker.Surname = Console.ReadLine();
+                }
+
+                // Дата подписания контракта
+                Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
+                worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
+                 
+                // Срок действия контракта
+                Console.Write("Введите срок действия контракта:  ");
+                worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
+
+                // Оклад работника
+                Console.Write("Введите оклад работника:  ");
+                worker.Salary = Convert.ToUInt32(Console.ReadLine());
+
+                // Добавления в список
+                list.Add(worker);
+            }
+			
+            // Если возникла ошибка
+			catch
+            {
+                Console.Clear();
+                // Вывод сообщения об ошибке
+                Console.WriteLine("Ошибка!");
+            }
+        }
         public static void AddNewWorker(IList<Worker> list)
         {
             try
