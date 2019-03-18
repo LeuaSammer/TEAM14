@@ -128,7 +128,7 @@ namespace team14
         /// <summary>
         /// Ввод даты с консоли
         /// </summary>
-        /// <returns> Введенна дата</returns>
+        /// <returns> Введенная дата</returns>
         private static DateTime? InputDateTime()
         {
             DateTime result;
@@ -176,7 +176,7 @@ namespace team14
                 // Преобразуем строку в число
                 var result = UInt32.Parse(temp);
 
-                //  Вернуть полученное значение
+                // Вернуть полученное значение
                 return result;
             }
             
