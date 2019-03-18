@@ -7,16 +7,11 @@ namespace team14
     {
         static void Main(string[] args)
         {
-            /*
-            Бесконечный цикл работы программы {
-                Вывод главного меню  
-                Выбор команды
-                Выполнить выбранную команду
-            }
-             */
+            // Список работников
             IList<Worker> list = new List<Worker>();
             Worker.Filter = new Filter();
             string ch;
+
             // Бесконечный цикл работы программы
             do
             {
@@ -33,32 +28,33 @@ namespace team14
                 // Выполнить выбранную команду
                 switch (ch)
                 {
-                    case "1":
+                    case "1": // Добавление нового работника
                         Console.Clear();
                         Console.WriteLine("Ввод нового работника: ");
                         Worker.AddNewWorker(list);
                         break;
 
-                    case "2":
+                    case "2": // Вывод отфильтрованного списка работников
                         Console.Clear();
                         Worker.PrintAllWorkers(list);
                         break;
 
-                    case "3":
+                    case "3": // Ввод значений фильтра
                         Console.Clear();
                         Worker.Filter.Input();
                         break;
 
-                    case "4":
+                    case "4": // Вывод отфильтрованного списка работников
                         Console.Clear();
                         Worker.PrintFilteredWokers(list);
                         break;
 
-                    default:
+                    default: // Выход из программы
                         Environment.Exit(0);
                         break;
                 }
 
+                // Очистка экрана
                 Console.ReadKey();
                 Console.Clear();
 
@@ -89,81 +85,78 @@ namespace team14
         #endregion
 
         #region Методы для ввода полей фильтра с клавиатуры
-        
+
         /// <summary>
         /// Ввод значений фильтра с клавиатуры
         /// </summary>
         public void Input()
         {
+            // Фамилия
             Console.WriteLine("Введите значение фильтра поля \"Фамилия\":");
             Surname = Console.ReadLine();
 
-            Console.WriteLine("Введите значение фильтра поля \"Позиция\":");
+            // Позиция
+            Console.WriteLine("Введите значение фильтра поля \"Должность\":");
             Position = Console.ReadLine();
 
+            // Дата подписания контракта (min)
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Дата подписания договора\"");
             ContractSigningDateMin = Filter.InputDateTime();
 
+            // Дата подписания контракта (max)
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Дата подписания договора\"");
             ContractSigningDateMax = Filter.InputDateTime();
 
+            // Срок действия контракта (min)
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
             ContractTermMin = Filter.InputUint();
 
+            // Срок действия контракта (max)
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Срок дейстрвия контракта\"");
             ContractTermMax = Filter.InputUint();
 
+            // Оклад (min)
             Console.WriteLine("Введите значение нижней границы диапазона фильтра поля \"Оклад\"");
             SalaryMin = Filter.InputUint();
 
+            // Оклад (max)
             Console.WriteLine("Введите значение верхней границы диапазона фильтра поля \"Оклад\"");
             SalaryMax = Filter.InputUint();
         }
         #endregion
-        
+
         /// <summary>
         /// Ввод даты с консоли
         /// </summary>
         /// <returns> Введенна дата</returns>
         private static DateTime? InputDateTime()
         {
-            /*
-            Прочитать строку с клавиатуры
-            if введеная строка не пуста {
-                Преобразуем строку в дату
-                if преобразование успешно {
-                    вернуть дату
-                }
-                else {
-                    Вывести сообщение об ошибке
-                }
-            }
-            вернуть NULL
-            */
-            
-            // Прочитать строку с клавиатуры
+            DateTime result;
+
+            // Прочитать значение с клавиатуры
             string temp = Console.ReadLine();
-            // if введеная строка не пуста
-            if (temp != String.Empty)
+
+            // if введеная строка пуста вернуть NULL
+            if (temp == String.Empty) return null;
+
+            try
             {
-                try
-                {
-                    // Преобразуем строку в дату
-                    var result = DateTime.Parse(temp);
-                    //  if преобразование успешно {
-                    //      вернуть дату
-                    //  }
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    //  else {
-                    //      Вывести значение об ошибке
-                    //  }
-                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
-                }
+                // Преобразуем строку в дату
+                result = DateTime.Parse(temp);
+
+                // Вернуть полученное значение
+                return result;
             }
-            return null;
+            
+            // Если возникла ошибка
+            catch (Exception e)
+            {
+                // Вывод сообщения об ошибке
+                Console.WriteLine("Некорректный ввод! Повторите операцию.");
+
+                // Вернуть NULL
+                return null;
+            }
         }
 
         /// <summary>
@@ -172,42 +165,31 @@ namespace team14
         /// <returns> Введенное число </returns>
         private static uint? InputUint()
         {
-            /*
-            Прочитать строку с клавиатуры
-            if введеная строка не пуста {
-                Преобразуем строку в число
-                if преобразование успешно {
-                    вернуть число
-                }
-                else {
-                    Вывести сообщение об ошибке
-                }
-            }
-            вернуть NULL
-            */
-
+            // Прочитать строку с клавиатуры
             string temp = Console.ReadLine();
-            // if введеная строка не пуста
-            if (temp != String.Empty)
+
+            // if введеная строка пуста вернуть NULL
+            if (temp == String.Empty) return null;
+
+            try
             {
-                try
-                {
-                    // Преобразуем строку в дату
-                    var result = UInt32.Parse(temp);
-                    //  if преобразование успешно {
-                    //      вернуть число
-                    //  }
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    //  else {
-                    //      Вывести значение об ошибке
-                    //  }
-                    Console.WriteLine("Некорректный ввод! Повторите операцию.");
-                }
+                // Преобразуем строку в число
+                var result = UInt32.Parse(temp);
+
+                //  Вернуть полученное значение
+                return result;
             }
-            return null;
+            
+            // Если возникла ошибка
+            catch (Exception e)
+            {
+                // Вывод сообщения об ошибке
+                Console.WriteLine("Некорректный ввод! Повторите операцию.");
+
+                // Вернуть NULL
+                return null;
+            }
+
         }
     }
 
@@ -254,22 +236,22 @@ namespace team14
                     Console.Write("Повторите ввод должности:");
                     worker.Surname = Console.ReadLine();
                 }
-                
+
                 Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
                 worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
 
                 Console.Write("Введите срок действия контракта:  ");
                 worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
-                
+
                 Console.Write("Введите оклад работника:  ");
                 worker.Salary = Convert.ToUInt32(Console.ReadLine());
                 list.Add(worker);
             }
-            catch 
+            catch
             {
                 Console.Clear();
                 Console.WriteLine("Ошибка!");
-            }           
+            }
         }
 
         /// <summary>
