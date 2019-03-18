@@ -297,9 +297,9 @@ namespace team14
             Console.WriteLine($"Вывод отфильтрованных работников");
             foreach (var el in list)
             {
-                Console.WriteLine($"{++count}-й работник:");
                 if (el.CheckWithFilter())
                 {
+                    Console.WriteLine($"{++count}-й работник:");
                     el.PrintWorker();
                     Console.WriteLine();
                 }
