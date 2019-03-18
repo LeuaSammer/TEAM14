@@ -34,7 +34,7 @@ namespace team14
                         Worker.AddNewWorker(list);
                         break;
 
-                    case "2": // Вывод отфильтрованного списка работников
+                    case "2": // Вывод списка работников
                         Console.Clear();
                         Worker.PrintAllWorkers(list);
                         break;
@@ -95,7 +95,7 @@ namespace team14
             Console.WriteLine("Введите значение фильтра поля \"Фамилия\":");
             Surname = Console.ReadLine();
 
-            // Позиция
+            // Должность
             Console.WriteLine("Введите значение фильтра поля \"Должность\":");
             Position = Console.ReadLine();
 
@@ -139,22 +139,19 @@ namespace team14
             // if введеная строка пуста вернуть NULL
             if (temp == String.Empty) return null;
 
+            // Преобразуем строку в дату
             try
             {
-                // Преобразуем строку в дату
                 result = DateTime.Parse(temp);
 
                 // Вернуть полученное значение
                 return result;
             }
-            
-            // Если возникла ошибка
+
             catch (Exception e)
             {
                 // Вывод сообщения об ошибке
                 Console.WriteLine("Некорректный ввод! Повторите операцию.");
-
-                // Вернуть NULL
                 return null;
             }
         }
@@ -171,22 +168,19 @@ namespace team14
             // if введеная строка пуста вернуть NULL
             if (temp == String.Empty) return null;
 
+            // Преобразуем строку в число
             try
             {
-                // Преобразуем строку в число
                 var result = UInt32.Parse(temp);
 
                 // Вернуть полученное значение
                 return result;
             }
-            
-            // Если возникла ошибка
+
             catch (Exception e)
             {
                 // Вывод сообщения об ошибке
                 Console.WriteLine("Некорректный ввод! Повторите операцию.");
-
-                // Вернуть NULL
                 return null;
             }
 
@@ -215,10 +209,12 @@ namespace team14
         /// Ввод информации о работнике с клавиатуры
         /// </summary>
         /// <param name="list">Список работников</param>
-		public static void AddNewWorker(IList<Worker> list)
+        public static void AddNewWorker(IList<Worker> list)
         {
+            // Ввод информации о сотруднике
             try
             {
+                // Создадим структуру, в которую добавляются поля 
                 Worker worker = new Worker();
 
                 // Фамилия работника
@@ -242,7 +238,7 @@ namespace team14
                 // Дата подписания контракта
                 Console.Write("Введите дату подписания контракта в формате (DD.MM.YYYY):  ");
                 worker.ContractSigningDate = Convert.ToDateTime(Console.ReadLine());
-                 
+
                 // Срок действия контракта
                 Console.Write("Введите срок действия контракта:  ");
                 worker.ContractTerm = Convert.ToUInt32(Console.ReadLine());
@@ -254,16 +250,15 @@ namespace team14
                 // Добавления в список
                 list.Add(worker);
             }
-			
-            // Если возникла ошибка
-			catch
+
+            catch
             {
                 Console.Clear();
                 // Вывод сообщения об ошибке
                 Console.WriteLine("Ошибка!");
             }
         }
-       
+
 
         /// <summary>
         /// Вывод информации о работнике на экран
