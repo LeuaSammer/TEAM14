@@ -72,7 +72,10 @@ namespace team14
 
         #endregion
 
-        #region Методы для ввода полей фильтра с клавиатуры 
+        #region Методы для ввода полей фильтра с клавиатуры
+        /// <summary>
+        /// Ввод значений фильтра с клавиатуры
+        /// </summary>
         public void Input()
         {
             Console.WriteLine("Введите значение фильтра поля \"Фамилия\":");
@@ -100,8 +103,12 @@ namespace team14
             SalaryMax = Filter.InputUint();
         }
         #endregion
-
-        public static DateTime? InputDateTime()
+        
+        /// <summary>
+        /// Чтение даты с консоли 
+        /// </summary>
+        /// <returns></returns>
+        private static DateTime? InputDateTime()
         {
             /*
             Прочитать строку с клавиатуры
@@ -142,8 +149,10 @@ namespace team14
             return null;
         }
 
-        // Чтение числа с клавиатуры
-        public static uint? InputUint()
+        /// <summary>
+        /// Чтение числа с клавиатуры 
+        /// </summary>
+        private static uint? InputUint()
         {
             /*
             Прочитать строку с клавиатуры
@@ -188,11 +197,11 @@ namespace team14
     {
         #region Свойства
 
-        public string Surname;             // Фамилия
-        public string Position;            // Должность
+        public string Surname;               // Фамилия
+        public string Position;              // Должность
         public DateTime ContractSigningDate; // Дата подписания контракта
-        public uint ContractTerm;        // Срок действия контракта
-        public uint Salary;              // Оклад
+        public uint ContractTerm;            // Срок действия контракта
+        public uint Salary;                  // Оклад
 
         public static Filter Filter;         // Фильтр
 
