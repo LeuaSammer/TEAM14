@@ -20,7 +20,7 @@ namespace team14
                 Console.WriteLine("1. Ввод нового работника");
                 Console.WriteLine("2. Вывод работников");
                 Console.WriteLine("3. Ввод значений фильтра");
-                Console.WriteLine("4. Вывод отфильтрованных значений");
+                Console.WriteLine("4. Вывод отфильтрованного списка работников");
 
                 // Выбор команды
                 ch = Console.ReadLine();
@@ -28,13 +28,13 @@ namespace team14
                 // Выполнить выбранную команду
                 switch (ch)
                 {
-                    case "1": // Добавление нового работника
+                    case "1": // Ввод нового работника
                         Console.Clear();
                         Console.WriteLine("Ввод нового работника: ");
                         Worker.AddNewWorker(list);
                         break;
 
-                    case "2": // Вывод списка работников
+                    case "2": // Вывод работников
                         Console.Clear();
                         Worker.PrintAllWorkers(list);
                         break;
@@ -87,7 +87,7 @@ namespace team14
         #region Методы для ввода полей фильтра с клавиатуры
 
         /// <summary>
-        /// Ввод значений фильтра с клавиатуры
+        /// Ввод значений фильтра
         /// </summary>
         public void Input()
         {
@@ -133,7 +133,7 @@ namespace team14
         {
             DateTime result;
 
-            // Прочитать значение с клавиатуры
+            // Прочитать значение с консоли
             string temp = Console.ReadLine();
 
             // if введеная строка пуста вернуть NULL
@@ -143,11 +143,9 @@ namespace team14
             try
             {
                 result = DateTime.Parse(temp);
-
                 // Вернуть полученное значение
                 return result;
             }
-
             catch (Exception e)
             {
                 // Вывод сообщения об ошибке
@@ -157,12 +155,12 @@ namespace team14
         }
 
         /// <summary>
-        /// Чтение числа с клавиатуры 
+        /// Чтение числа с консоли 
         /// </summary>
         /// <returns> Введенное число </returns>
         private static uint? InputUint()
         {
-            // Прочитать строку с клавиатуры
+            // Прочитать строку с консоли
             string temp = Console.ReadLine();
 
             // if введеная строка пуста вернуть NULL
@@ -172,11 +170,9 @@ namespace team14
             try
             {
                 var result = UInt32.Parse(temp);
-
                 // Вернуть полученное значение
                 return result;
             }
-
             catch (Exception e)
             {
                 // Вывод сообщения об ошибке
@@ -206,7 +202,7 @@ namespace team14
 
 
         /// <summary>
-        /// Ввод информации о работнике с клавиатуры
+        /// Ввод информации о работнике с консоли
         /// </summary>
         /// <param name="list">Список работников</param>
         public static void AddNewWorker(IList<Worker> list)
