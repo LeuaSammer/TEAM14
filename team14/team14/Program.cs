@@ -50,7 +50,7 @@ namespace team14
                 Console.ReadKey();
                 Console.Clear();
 
-            } while (int.Parse(ch) < 5);
+            } while (true);
         }
     }
 
