@@ -18,11 +18,11 @@ namespace team14
                 // Вывод главного меню
                 Console.WriteLine("Меню:");
                 Console.WriteLine("1. Ввод нового работника");
-                Console.WriteLine("2. Вывод работников");
+                Console.WriteLine("2. Вывод всех работников");
                 Console.WriteLine("3. Ввод значений фильтра");
                 Console.WriteLine("4. Вывод отфильтрованного списка работников");
 
-                // Выбор команды
+                // Выбор пункта меню
                 ch = Console.ReadLine();
 
                 // Выполнить выбранную команду
@@ -34,7 +34,7 @@ namespace team14
                         Worker.AddNewWorker(list);
                         break;
 
-                    case "2": // Вывод работников
+                    case "2": // Вывод всех работников
                         Console.Clear();
                         Worker.PrintAllWorkers(list);
                         break;
@@ -139,7 +139,7 @@ namespace team14
             // if введеная строка пуста вернуть NULL
             if (temp == String.Empty) return null;
 
-            // Преобразуем строку в дату
+            // Преобразуем введенную строку в дату
             try
             {
                 result = DateTime.Parse(temp);
@@ -166,7 +166,7 @@ namespace team14
             // if введеная строка пуста вернуть NULL
             if (temp == String.Empty) return null;
 
-            // Преобразуем строку в число
+            // Преобразуем введенную строку в число
             try
             {
                 var result = UInt32.Parse(temp);
@@ -246,7 +246,6 @@ namespace team14
                 // Добавления в список
                 list.Add(worker);
             }
-
             catch
             {
                 Console.Clear();
