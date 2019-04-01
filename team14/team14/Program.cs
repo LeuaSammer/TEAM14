@@ -29,23 +29,19 @@ namespace team14
                 switch (ch)
                 {
                     case "1": // Ввод нового работника
-                        Console.Clear();
                         Console.WriteLine("Ввод нового работника: ");
                         Worker.AddNewWorker(list);
                         break;
 
                     case "2": // Вывод всех работников
-                        Console.Clear();
                         Worker.PrintAllWorkers(list);
                         break;
 
                     case "3": // Ввод значений фильтра
-                        Console.Clear();
                         Worker.Filter.Input();
                         break;
 
                     case "4": // Вывод отфильтрованного списка работников
-                        Console.Clear();
                         Worker.PrintFilteredWokers(list);
                         break;
 
@@ -56,7 +52,6 @@ namespace team14
 
                 // Очистка экрана
                 Console.ReadKey();
-                Console.Clear();
 
             } while (true);
         }
